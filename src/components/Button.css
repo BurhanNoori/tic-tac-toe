@@ -1,0 +1,12 @@
+.btn-container{
+    flex-basis: 33.33%;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+}
+
+.btn{
+    width: 75px;
+    height: 75px;
+    border-radius: 10px;
+}

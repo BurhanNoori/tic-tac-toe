@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Arena from "./components/Arena";
+import Player from "./components/Player";
+
+import "./App.css";
+
+const PLAYERS = [
+	{
+		name: "Player 1",
+		symbol: "X",
+	},
+	{
+		name: "Player 2",
+		symbol: "O",
+	},
+];
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [activePlayer, setPlayer] = useState(PLAYERS[0]);
+	const [clickedButton, setClickedButton] = useState(null);
+
+	const buttonClickHandler = (key) => {
+		setClickedButton(key);
+		setNextPlayer();
+	};
+
+	const setNextPlayer = () => {
+		const nextPlayer = PLAYERS.find(
+			(player) => player.symbol !== activePlayer.symbol,
+		);
+		setPlayer(nextPlayer);
+	};
+
+	return (
+		<div className='App-header'>
+			<Player player={activePlayer} />
+			<Arena clickedButton = {clickedButton} handler={buttonClickHandler} player={activePlayer} />
+		</div>
+	);
 }
 
 export default App;
